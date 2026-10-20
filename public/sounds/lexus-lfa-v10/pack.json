@@ -1,0 +1,117 @@
+{
+  "name": "Lexus LFA V10",
+  "credit": "Audio from \"BLUE Lexus LFA Start Up, Loud Revs, Acceleration\" by Best Sport CARS Video on YouTube (CC BY). See CREDITS.md.",
+  "license": "CC BY",
+  "idleRpm": 1100,
+  "redlineRpm": 9000,
+  "maxRpm": 10000,
+  "gain": 1.0,
+  "sweep": {
+    "file": "cut.mp3",
+    "keyframes": [
+      {
+        "t": 5.49,
+        "rpm": 1346
+      },
+      {
+        "t": 5.83,
+        "rpm": 1360
+      },
+      {
+        "t": 5.93,
+        "rpm": 1594
+      },
+      {
+        "t": 6.04,
+        "rpm": 1726
+      },
+      {
+        "t": 6.14,
+        "rpm": 1984
+      },
+      {
+        "t": 6.25,
+        "rpm": 2811
+      },
+      {
+        "t": 6.35,
+        "rpm": 2897
+      },
+      {
+        "t": 6.46,
+        "rpm": 3075
+      },
+      {
+        "t": 6.56,
+        "rpm": 3232
+      },
+      {
+        "t": 6.67,
+        "rpm": 3715
+      },
+      {
+        "t": 6.77,
+        "rpm": 3904
+      },
+      {
+        "t": 6.87,
+        "rpm": 4104
+      },
+      {
+        "t": 6.98,
+        "rpm": 4270
+      },
+      {
+        "t": 7.08,
+        "rpm": 4488
+      },
+      {
+        "t": 7.19,
+        "rpm": 4812
+      },
+      {
+        "t": 7.29,
+        "rpm": 4958
+      },
+      {
+        "t": 7.4,
+        "rpm": 5057
+      },
+      {
+        "t": 7.5,
+        "rpm": 5263
+      },
+      {
+        "t": 7.61,
+        "rpm": 5476
+      },
+      {
+        "t": 7.71,
+        "rpm": 5699
+      },
+      {
+        "t": 7.81,
+        "rpm": 6171
+      },
+      {
+        "t": 7.92,
+        "rpm": 6422
+      },
+      {
+        "t": 8.02,
+        "rpm": 6551
+      },
+      {
+        "t": 8.13,
+        "rpm": 6817
+      }
+    ]
+  },
+  "idle": {
+    "file": "cut.mp3",
+    "start": 0.2,
+    "end": 5.0,
+    "rpm": 1100,
+    "gain": 1.36
+  }
+}

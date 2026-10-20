@@ -1,0 +1,18 @@
+{
+  "name": "redline",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A GPS-driven speedometer and virtual tachometer with a real engine note, built for a car's browser.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5",
+    "wrangler": "^4.151.2"
+  }
+}

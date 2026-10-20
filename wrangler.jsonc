@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "redline",
+  "compatibility_date": "2026-10-01",
+
+  // Static-assets-only Worker: no script, Cloudflare just serves dist/.
+  "assets": {
+    "directory": "./dist"
+  },
+
+  // horizoncode.io is already a zone on this account, so a custom_domain
+  // route creates the redline.horizoncode.io DNS record on first deploy.
+  "routes": [
+    { "pattern": "redline.horizoncode.io", "custom_domain": true }
+  ],
+
+  // Keep the site off the public *.workers.dev subdomain.
+  "workers_dev": false
+}

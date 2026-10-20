@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Redline: a tach with the needle in the red. -->
+  <circle cx="32" cy="32" r="31" fill="#0a0a0a"/>
+  <circle cx="32" cy="32" r="29.5" fill="none" stroke="#b9b9b9" stroke-width="2.5"/>
+  <path d="M 14.3 49.7 A 25 25 0 1 1 49.7 49.7" fill="none" stroke="#efe9dd" stroke-width="2.2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M 54.7 21.4 A 25 25 0 0 1 49.7 49.7" fill="none" stroke="#e0261e" stroke-width="5.5" stroke-linecap="round"/>
+  <line x1="32" y1="32" x2="54" y2="34" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round"/>
+  <circle cx="32" cy="32" r="4.8" fill="#e0261e" stroke="#ffffff" stroke-width="1.6"/>
+</svg>

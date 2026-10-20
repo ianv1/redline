@@ -1,0 +1,720 @@
+:root {
+  --bg: #050505;
+  --cream: #efe9dd;
+  --cream-dim: rgba(239, 233, 221, 0.55);
+  --cream-faint: rgba(239, 233, 221, 0.3);
+  --red: #e0261e;
+  --font: 'Jost', 'Futura', 'Century Gothic', system-ui, sans-serif;
+
+  --dial-numeral: var(--cream);
+  --dial-tick: var(--cream);
+  --dial-needle: var(--red);
+  --dial-redline: var(--red);
+  --dial-readout: #fff;
+  --dial-label: var(--cream-dim);
+  --dial-face: #171717;
+  --dial-face-mid: #0a0a0a;
+  --dial-face-edge: #040404;
+}
+
+[data-theme='ferrari'] {
+  --dial-numeral: var(--cream);
+  --dial-tick: var(--cream);
+  --dial-needle: var(--red);
+  --dial-redline: var(--red);
+  --dial-readout: #fff;
+  --dial-label: var(--cream-dim);
+  --dial-face: #171717;
+  --dial-face-mid: #0a0a0a;
+}
+
+[data-theme='lamborghini'] {
+  --dial-numeral: #f6f2ea;
+  --dial-tick: #f6f2ea;
+  --dial-needle: #ff8a1f;
+  --dial-redline: #ff4a1a;
+  --dial-readout: #ffb15c;
+  --dial-label: rgba(255, 177, 92, 0.6);
+  --dial-face: #1b1816;
+  --dial-face-mid: #0b0a09;
+}
+
+[data-theme='lfa'] {
+  --dial-numeral: #f7f9fb;
+  --dial-tick: #f7f9fb;
+  --dial-needle: #e8231c;
+  --dial-redline: #ff2a1a;
+  --dial-readout: #ffffff;
+  --dial-label: #8d98a6;
+  --dial-face: #0f1317;
+  --dial-face-mid: #080a0c;
+}
+
+[data-theme='f458'] {
+  --dial-numeral: var(--cream);
+  --dial-tick: var(--cream);
+  --dial-needle: var(--red);
+  --dial-redline: var(--red);
+  --dial-readout: #fff;
+  --dial-label: var(--cream-dim);
+  --dial-face: #171717;
+  --dial-face-mid: #0a0a0a;
+}
+[data-theme='f458'] #rpm {
+  --dial-numeral: #16140e;
+  --dial-tick: #16140e;
+  --dial-needle: #d81e14;
+  --dial-redline: #d81e14;
+  --dial-readout: #16140e;
+  --dial-label: #5c4b08;
+  --dial-face: #f3c511;
+  --dial-face-mid: #e4b508;
+  --dial-face-edge: #a07c00;
+}
+
+[data-theme='tesla'] {
+  --dial-numeral: #e8f1ff;
+  --dial-tick: #e8f1ff;
+  --dial-needle: #37c4ff;
+  --dial-redline: #37c4ff;
+  --dial-readout: #ffffff;
+  --dial-label: #7d8ba0;
+  --dial-face: #0e1216;
+  --dial-face-mid: #080a0d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--font);
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cluster {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  gap: 2vw;
+  padding: 2vh 3vw 0;
+}
+
+.dial {
+  width: min(44vw, 68vh);
+  aspect-ratio: 1;
+}
+
+.dial svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (orientation: portrait) {
+  .cluster {
+    grid-template-columns: 1fr;
+  }
+  .dial {
+    width: min(86vw, 36vh);
+  }
+}
+
+.dial text {
+  font-family: var(--font);
+}
+
+.dial .face-in {
+  stop-color: var(--dial-face);
+}
+.dial .face-mid {
+  stop-color: var(--dial-face-mid);
+}
+.dial .face-out {
+  stop-color: var(--dial-face-edge);
+}
+
+.dial .tick {
+  stroke: var(--dial-tick);
+  stroke-linecap: round;
+}
+.dial .tick.major {
+  stroke-width: 3;
+}
+.dial .tick.mid {
+  stroke-width: 2;
+  opacity: 0.8;
+}
+.dial .tick.minor {
+  stroke-width: 1.4;
+  opacity: 0.5;
+}
+.dial .tick.red {
+  stroke: var(--dial-redline);
+  opacity: 1;
+}
+
+.dial .redline {
+  fill: none;
+  stroke: var(--dial-redline);
+  stroke-width: 7;
+}
+.dial .redline-glow {
+  fill: none;
+  stroke: var(--dial-redline);
+  stroke-width: 14;
+  opacity: 0.4;
+}
+
+.dial .numeral {
+  font-size: 26px;
+  font-weight: 400;
+  fill: var(--dial-numeral);
+}
+.dial .numeral.red {
+  fill: var(--dial-redline);
+}
+
+.dial .label {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  fill: var(--dial-label);
+}
+
+.dial .readout {
+  font-weight: 300;
+  fill: var(--dial-readout);
+  font-variant-numeric: tabular-nums;
+}
+
+.dial .caption {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  fill: var(--dial-label);
+}
+
+.dial .needle-body {
+  fill: var(--dial-needle);
+}
+
+.dial svg.shift .readout {
+  fill: var(--dial-redline);
+  animation: shift-flash 0.16s steps(1, end) infinite alternate;
+}
+.dial svg.shift .redline-glow {
+  opacity: 0.9;
+}
+@keyframes shift-flash {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.25;
+  }
+}
+
+.topbar {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 0;
+}
+
+.compass svg {
+  display: block;
+  width: min(46vw, 440px);
+  height: auto;
+  opacity: 0.4;
+  transition: opacity 0.5s;
+}
+.compass svg.known {
+  opacity: 1;
+}
+.compass .ctick {
+  stroke: var(--dial-tick);
+  stroke-width: 1.4;
+  opacity: 0.55;
+}
+.compass .ctick.cardinal {
+  stroke-width: 2.2;
+  opacity: 1;
+}
+.compass .cletter {
+  font-family: var(--font);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  fill: var(--dial-numeral);
+}
+.compass .cletter.major {
+  font-size: 19px;
+  font-weight: 500;
+}
+.compass .cdeg {
+  font-family: var(--font);
+  font-size: 10px;
+  fill: var(--dial-label);
+}
+.compass .lubber {
+  fill: var(--dial-needle);
+}
+.compass .heading {
+  font-family: var(--font);
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  fill: var(--dial-label);
+  font-variant-numeric: tabular-nums;
+}
+.dial .needle-shadow {
+  fill: #000;
+  opacity: 0.55;
+}
+
+.statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 28px 18px;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+}
+
+.statusbar .controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px 10px;
+}
+
+.status {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 8px 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chip {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--cream-dim);
+  background: transparent;
+  border: 1px solid rgba(239, 233, 221, 0.18);
+  border-radius: 999px;
+  padding: 12px 20px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.chip:hover,
+.chip:focus-visible {
+  color: var(--cream);
+  border-color: rgba(239, 233, 221, 0.45);
+  outline: none;
+}
+.volume {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px 6px 18px;
+}
+.volume input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 120px;
+  height: 28px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+}
+.volume input::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(239, 233, 221, 0.25);
+}
+.volume input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -9.5px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2px solid #0a0a0a;
+  box-shadow: 0 0 0 1px rgba(239, 233, 221, 0.4);
+}
+.volume input::-moz-range-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(239, 233, 221, 0.25);
+}
+.volume input::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2px solid #0a0a0a;
+}
+.volume-value {
+  min-width: 3.2em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.chip[aria-checked='true'] {
+  color: var(--cream);
+  border-color: var(--red);
+}
+.chip[aria-expanded='true'] {
+  color: var(--cream);
+}
+
+.engines {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 8px;
+  width: min(92vw, 640px);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.engines[hidden] {
+  display: none;
+}
+
+.engine-chip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 18px 8px 8px;
+  border-radius: 16px;
+  text-align: left;
+  line-height: 1.15;
+  white-space: normal;
+}
+.engine-photo {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 44px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.engine-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.engine-photo .car-line {
+  width: 96px;
+  height: 40px;
+  color: var(--cream);
+  opacity: 0.5;
+}
+.engine-chip[aria-checked='true'] .car-line {
+  color: var(--dial-needle);
+  opacity: 1;
+}
+.engine-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+.engine-chip .engine-kind {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  opacity: 0.55;
+}
+
+.start .engines {
+  margin-top: -12px;
+}
+
+.engine-menu {
+  position: fixed;
+  right: 28px;
+  bottom: 72px;
+  z-index: 5;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  padding: 12px;
+  border-radius: 24px;
+  border: 1px solid rgba(239, 233, 221, 0.18);
+  background: rgba(8, 8, 8, 0.96);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+.engine-menu[hidden] {
+  display: none;
+}
+.engine-menu .engines {
+  width: min(92vw, 640px);
+}
+
+@media (orientation: portrait) {
+  .engine-menu {
+    left: 12px;
+    right: 12px;
+  }
+  .engine-menu .engines {
+    width: auto;
+  }
+}
+
+.start {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 24px;
+  overflow-y: auto;
+  background: radial-gradient(ellipse at center, #121212 0%, #050505 70%);
+}
+.start > :first-child {
+  margin-top: auto;
+}
+.start > :last-child {
+  margin-bottom: auto;
+}
+.start[hidden] {
+  display: none;
+}
+
+.wordmark {
+  margin: 0;
+  font-family: 'Michroma', 'Eurostile', 'Bank Gothic', var(--font);
+  font-weight: 400;
+  font-size: clamp(30px, 6.4vw, 78px);
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+  line-height: 1;
+  color: #fff;
+}
+
+.tagline {
+  margin: -20px 0 0;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+}
+
+.start .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.btn {
+  font: inherit;
+  font-size: 16px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: linear-gradient(180deg, #1c1c1c, #0c0c0c);
+  border: 1px solid rgba(230, 230, 230, 0.35);
+  border-radius: 999px;
+  padding: 16px 36px;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.btn.primary {
+  border-color: var(--red);
+  box-shadow:
+    0 0 24px rgba(224, 38, 30, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+.start .note {
+  margin-top: 0;
+  max-width: min(92vw, 110ch);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.8;
+  color: var(--cream-faint);
+}
+
+.revrow {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 14px;
+}
+.revrow[hidden] {
+  display: none;
+}
+
+.rev {
+  width: 92px;
+  height: 92px;
+  padding: 0;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  text-transform: uppercase;
+  color: var(--cream);
+  border: 6px solid transparent;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 30%, #1d1d1d 0%, #0b0b0b 55%, #040404 100%) padding-box,
+    linear-gradient(135deg, #f2f2f2 0%, #8e8e8e 35%, #4c4c4c 62%, #d4d4d4 100%) border-box;
+  cursor: pointer;
+  touch-action: none;
+  box-shadow:
+    inset 0 0 0 2px #050505,
+    inset 0 -6px 12px rgba(0, 0, 0, 0.5),
+    0 8px 22px rgba(0, 0, 0, 0.6);
+  transition:
+    transform 0.08s,
+    box-shadow 0.12s,
+    color 0.12s;
+}
+.rev[data-down] {
+  color: #fff;
+  transform: scale(0.96);
+  box-shadow:
+    inset 0 0 0 2px #050505,
+    inset 0 0 0 5px var(--dial-redline),
+    inset 0 0 18px rgba(224, 38, 30, 0.45),
+    0 0 26px rgba(224, 38, 30, 0.4),
+    0 8px 22px rgba(0, 0, 0, 0.6);
+}
+
+.ev {
+  display: none;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 0 3vw;
+}
+#app[data-mode='ev'] .ev {
+  display: flex;
+}
+#app[data-mode='ev'] .cluster,
+#app[data-mode='ev'] .revrow,
+#app[data-mode='ev'] .volume {
+  display: none;
+}
+
+.ev svg {
+  display: block;
+  width: min(74vw, 62vh * 1.5, 640px);
+  height: auto;
+  overflow: visible;
+}
+.ev .arc-track {
+  fill: none;
+  stroke: rgba(232, 241, 255, 0.1);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.ev .arc-fill {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.ev .etick {
+  stroke: rgba(232, 241, 255, 0.3);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.ev .etick.major {
+  stroke: rgba(232, 241, 255, 0.7);
+  stroke-width: 2;
+}
+.ev .enum {
+  font-family: var(--font);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  fill: #8a97ab;
+}
+.ev .ev-digits {
+  font-family: 'Michroma', var(--font);
+  font-size: 90px;
+  fill: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+.ev .ev-unit {
+  font-family: var(--font);
+  font-size: 15px;
+  letter-spacing: 0.45em;
+  fill: #8a97ab;
+}
+
+.ev-stats {
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+}
+.stat {
+  text-align: center;
+}
+.stat-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #8a97ab;
+}
+.stat-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.stat-value {
+  font-family: 'Michroma', var(--font);
+  font-size: 26px;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+.stat-unit {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8a97ab;
+  white-space: nowrap;
+}
